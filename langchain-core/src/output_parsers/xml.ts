@@ -152,11 +152,21 @@ export function parseXMLMarkdown(s: string): XMLResult {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  parser.ontext = (text: any) => {
+  const onText = (text: any) => {
     if (elementStack.length > 0) {
       const currentElement = elementStack[elementStack.length - 1];
       currentElement.text += text;
     }
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  parser.ontext = (text: any) => {
+    onText(text);
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  parser.oncdata = (text: any) => {
+    onText(text);
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

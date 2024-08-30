@@ -16,6 +16,7 @@ const XML_EXAMPLE = `<?xml version="1.0" encoding="UTF-8"?>
       <email>true</email>
     </notifications>
   </preferences>
+  <bio><![CDATA[John is a senior developer with <10 years> of experience. He uses <Typescript> at work.]]></bio>
 </userProfile>`;
 
 const BACKTICK_WRAPPED_XML = `\`\`\`xml\n${XML_EXAMPLE}\n\`\`\``;
@@ -51,6 +52,9 @@ const expectedResult = {
           ],
         },
       ],
+    },
+    {
+      bio: "John is a senior developer with <10 years> of experience. He uses <Typescript> at work.",
     },
   ],
 };
